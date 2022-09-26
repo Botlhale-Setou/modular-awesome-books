@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./index.css" />
+    <script type="module" src="./index.js"></script>
   </head>
   <body>
     <div class="main-container">
@@ -18,19 +19,19 @@
         <nav class="navigation">
           <p class="nav-title">Awesome Books</p>
           <div class="nav-btns">
-            <label class="nav-radio-label">
-              <input name="nav-radio" type="radio" id="listRadio" onclick="selectList()" class="nav-btn">
+            <label class="nav-radio-label" for="listRadio" id="listLabel">
+              <input name="nav-radio" type="radio" id="listRadio" class="nav-btn">
               </input>
               <span>List</span>
             </label>
             <hr class="nav-divider">
-            <label class="nav-radio-label" for="addNewRadio">
-              <input name="nav-radio" type="radio" id="addNewRadio" onclick="selectAdd()" class="nav-btn"></input>
+            <label class="nav-radio-label" for="addNewRadio" id="addNewLabel">
+              <input name="nav-radio" type="radio" id="addNewRadio" class="nav-btn"></input>
               <span>Add new</span>
             </label>  
             <hr class="nav-divider">
-            <label class="nav-radio-label" for="contactRadio">
-              <input name="nav-radio" type="radio" id="contactRadio" onclick="selectContact()" class="nav-btn"></input>
+            <label class="nav-radio-label" for="contactRadio" id="contactLabel">
+              <input name="nav-radio" type="radio" id="contactRadio" class="nav-btn"></input>
               <span>Contact</span>
             </label>    
           </div>
@@ -40,16 +41,18 @@
         <span id="clock-time">HH:MM:SS</span>
         <span id="clock-ampm">PM</span>
       </div>
+
       <section id="listTab" class="list-tab">
         <h1>Awesome books</h1>
         <div class="books-ph" id="book"></div>
       </section>
+
       <section id="addNewTab" class="add-new-tab">
         <h2>Add a new book</h2>
         <div class="input-container">
           <input class="input" id="title" type="text" placeholder="Title" />
           <input class="input" id="author" type="text" placeholder="Author" />
-          <button class="input-btn" onclick="addNewBook()" type="button">
+          <button id="addBtn" class="input-btn" type="button">
             Add
           </button>
         </div>
@@ -67,6 +70,6 @@
         <p>copyright</p>
       </footer>
     </div>
-    <script src="./index.js"></script>
+    
   </body>
 </html>
