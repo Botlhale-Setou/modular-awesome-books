@@ -1,0 +1,24 @@
+{
+  "name": "modular-awesome-books",
+  "version": "1.0.0",
+  "description": "Awesome Books website - with modular src file structure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Botlhale-Setou/modular-awesome-books.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Botlhale-Setou/modular-awesome-books/issues"
+  },
+  "homepage": "https://github.com/Botlhale-Setou/modular-awesome-books#readme",
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-plugin-react": "^7.31.8"
+  }
+}
