@@ -2,6 +2,7 @@
 /* eslint-disable prefer-template */
 
 import BookLibrary from "./modules/BookLibrary.js";
+import * as lux from "./modules/luxon.js"
 
 const listRadio = document.querySelector('#listLabel');
 const addNewRadio = document.querySelector('#addNewLabel');
@@ -13,13 +14,14 @@ const libraryDiv = document.querySelector('#book');
 const titleInput = document.querySelector('#title');
 const authorInput = document.querySelector('#author');
 const addBtn = document.querySelector('#addBtn');
+const clock = document.querySelector('#clock');
 
 const library = new BookLibrary;
 let allRmvBtns = document.querySelectorAll('.remove-btn');
 
 const refresh = (booksDiv) => {
   booksDiv.innerHTML = '';
-
+  
   library.arrBooks.forEach((book) => {
     const bookDiv = document.createElement('div');
     const xText = document.createElement('p');
@@ -37,6 +39,26 @@ const refresh = (booksDiv) => {
     booksDiv.append(bookDiv);
   })
 }
+
+const updateRMV = () => {
+  allRmvBtns = document.querySelectorAll('.remove-btn');
+  for (let i = 0; i < allRmvBtns.length; i++) {
+    allRmvBtns[i].addEventListener('click', () => {
+      library.remove(i);
+
+      refresh(libraryDiv);
+      updateRMV();
+
+      window.localStorage.setItem('books', JSON.stringify(library.arrBooks));      
+    });  
+  }
+}
+
+window.setInterval(() => {
+  let temp = lux.DateTime.now().toLocaleString(lux.DateTime.DATETIME_MED);
+  clock.innerHTML = '';
+  clock.innerHTML = temp;
+}, 1000);
 
 listRadio.addEventListener('click', () => {
   listTab.style.display = 'block';
@@ -68,26 +90,13 @@ addBtn.addEventListener('click', () => {
   window.localStorage.setItem('books', JSON.stringify(library.arrBooks));
 })
 
-const updateRMV = () => {
-  allRmvBtns = document.querySelectorAll('.remove-btn');
-  for (let i = 0; i < allRmvBtns.length; i++) {
-    allRmvBtns[i].addEventListener('click', () => {
-      library.remove(i);
-
-      refresh(libraryDiv);
-      updateRMV();
-
-      window.localStorage.setItem('books', JSON.stringify(library.arrBooks));      
-    });  
-  }
-}
-
 window.addEventListener('load', () => {
   const localStorageItem = window.localStorage.getItem('books');
   if (localStorageItem) {
     library.arrBooks = JSON.parse(localStorageItem);
-    
+
     refresh(libraryDiv);
     updateRMV();
   }
 });
+
